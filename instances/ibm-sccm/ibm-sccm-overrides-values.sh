@@ -41,6 +41,7 @@ DBPORT=$(oc get svc db2-lb -n ${NS} -o jsonpath='{ .spec.ports[0].port}')
 DBDATA=${DBDATA:-"SCCDB"}
 DBUSER=${DBUSER:-"db2inst1"}
 DBDRIVER=${DBDRIVER:-"/app/CC/user_inputs/db2jcc4.jar"}
+DBPASSWORD=$(oc get secret b2b-db-secret -n b2bi-prod -o jsonpath='{ .data.DB_PASSWORD}' | base64 -d)
 
 CLUSTER_DOMAIN=$(oc get dns cluster -o jsonpath='{ .spec.baseDomain }')
 
@@ -54,6 +55,7 @@ DBHOST=\"${DBHOST}\" \
 DBPORT=\"${DBPORT}\" \
 DBDATA=\"${DBDATA}\" \
 DBUSER=\"${DBUSER}\" \
+DBPASSWORD=\"${DBPASSWORD}\" \
 DBDRIVER=\"${DBDRIVER}\" \
 CLUSTER_DOMAIN=\"${CLUSTER_DOMAIN}\" \
 EMAIL_HOST_NAME=\"${EMAIL_HOST_NAME}\" \

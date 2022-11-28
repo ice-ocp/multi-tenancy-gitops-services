@@ -67,6 +67,7 @@ ibm-sccm:
     dbPort: ${DBPORT}
     dbUser: ${DBUSER}
     dbName: ${DBDATA}
+    dbPassword: ${DBPASSWORD}
     dbLoc: "none"
     dbInit: "true"
     dbPartition: "false"
