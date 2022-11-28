@@ -107,8 +107,8 @@ ibm-sccm:
     dbSSL: ""
       
     # Keystore and truststore configuration
-    keyStore: "/app/CC/user_inputs/keystore.jks"
-    trustStore: "/app/CC/user_inputs/truststore.jks"
+    keyStore: "/app/certs_secret_files/keystore"
+    trustStore: "/app/certs_secret_files/truststore"
     keyAlias: "self"
     adminEmailAddress: "no.reply@gmail.com"
 
