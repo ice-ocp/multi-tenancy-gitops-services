@@ -67,7 +67,6 @@ ibm-sccm:
     dbPort: "50000"
     dbUser: "db2inst1"
     dbName: "SCCDB"
-    dbPassword: "db2inst1"
     dbLoc: "none"
     dbInit: "true"
     dbPartition: "false"
