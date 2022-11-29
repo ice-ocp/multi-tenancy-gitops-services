@@ -75,9 +75,9 @@ DOMAIN=$(oc get ingresscontroller -n openshift-ingress-operator default -o jsonp
 
 keytool -genkey -keystore keystore.jks -storepass ${KEYSTORE_PASSWORD} -storetype JKS -alias ${KEY_ALIAS} -dname "CN=*.${DOMAIN}, ou=IBM Control Center, o=Director, L=Armonk, st=New York, c=US" -keypass ${KEYSTORE_PASSWORD} -sigalg SHA256withRSA -keyalg RSA
 
-keytool -export -alias ${KEY_ALIAS} -file selfsigned.cer -keystore keystore.jks
+keytool -export -alias ${KEY_ALIAS} -storetype JKS -file selfsigned.cer -keystore keystore.jks
 
-keytool -import -v -trustcacerts -alias ${KEY_ALIAS} -file selfsigned.cer -keystore truststore.jks -keypass ${TRUSTSTORE_PASSWORD} -storepass ${TRUSTSTORE_PASSWORD}
+keytool -import -v -trustcacerts -alias ${KEY_ALIAS} -storetype JKS -file selfsigned.cer -keystore truststore.jks -keypass ${TRUSTSTORE_PASSWORD} -storepass ${TRUSTSTORE_PASSWORD}
 
 oc create secret generic ibm-sccm-jks-certs-secret --type=Opaque --from-file=keystore=keystore.jks --from-file=truststore=truststore.jks --dry-run=client -o yaml > delete-ibm-sccm-keystore-jks.yaml
 
