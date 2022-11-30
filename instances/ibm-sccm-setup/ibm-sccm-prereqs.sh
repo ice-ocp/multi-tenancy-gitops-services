@@ -73,7 +73,7 @@ rm delete-ibm-sccm-secret.yaml
 echo "Creating truststore.jks and keystore.jks certificates as secrets"
 DOMAIN=$(oc get ingresscontroller -n openshift-ingress-operator default -o jsonpath='{.status.domain}')
 
-keytool -genkey -keystore keystore.jks -storepass ${KEYSTORE_PASSWORD} -storetype JKS -alias ${KEY_ALIAS} -dname "CN=*.${DOMAIN}, ou=IBM Control Center, o=Director, L=Armonk, st=New York, c=US" -keypass ${KEYSTORE_PASSWORD} -sigalg SHA256withRSA -keyalg RSA
+keytool -genkey -keystore keystore.jks -storepass ${KEYSTORE_PASSWORD} -storetype JKS -alias ${KEY_ALIAS} -dname "CN=*.${DOMAIN}, ou=IBM Control Center, o=Director, L=Armonk, st=New York, c=US" -keypass ${KEYSTORE_PASSWORD} -sigalg SHA256withRSA -keyalg RSA -ext SAN=dns:${DOMAIN}
 
 keytool -export -alias ${KEY_ALIAS} -storetype JKS -file selfsigned.cer -keystore keystore.jks
 
